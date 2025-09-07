@@ -20,10 +20,10 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(`${serverUrl}/api/me`, { withCredentials: true });
-        // dispatch to Redux here, e.g.
+        // ✅ dispatch user data to Redux here
         // dispatch(setUser(res.data));
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching user:", err);
       }
     };
 
@@ -34,12 +34,18 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/signup" element={!userData ? <SignUp /> : <Navigate to="/" />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/signup"
+          element={!userData ? <SignUp /> : <Navigate to="/" />}
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile"element={<Profile/>}/>
-        <Route path="/forget" element={!userData ? <ForgetPassword/> : <Navigate to="/signup" />} />
-      <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/forget"
+          element={!userData ? <ForgetPassword /> : <Navigate to="/signup" />}
+        />
+        <Route path="/profileedit" element={<EditProfile />} />
       </Routes>
     </>
   );
