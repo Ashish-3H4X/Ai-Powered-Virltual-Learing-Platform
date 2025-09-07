@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Profile from './pages/Profile.jsx';
 import ForgetPassword from './pages/ForgetPassword.jsx';
 import axios from 'axios';
+import EditProfile from './pages/EditProfile.jsx';
 
 export const serverUrl = "http://localhost:8000";
 
@@ -33,11 +34,12 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/signup" element={!userData ? <SignUp /> : <Navigate to="/" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={userData ? <Profile /> : <Navigate to="/signup" />} />
-        <Route path="/forget" element={!userData ? <ForgetPassword /> : <Navigate to="/signup" />} />
+        <Route path="/profile"element={<Profile/>}/>
+        <Route path="/forget" element={!userData ? <ForgetPassword/> : <Navigate to="/signup" />} />
+      <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </>
   );
