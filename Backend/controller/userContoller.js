@@ -31,6 +31,7 @@ export const updateProfile = async(req,res)=>{
       return res.status(200).json({message:"User not Found"})
       
     }
+     await user.save()
     return res.status(200).json(user)
 
   } catch (error) {

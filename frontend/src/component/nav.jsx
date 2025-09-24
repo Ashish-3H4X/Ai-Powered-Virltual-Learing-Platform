@@ -14,6 +14,7 @@ import { FaBookOpen, FaUser, FaSignOutAlt, FaTachometerAlt } from "react-icons/f
 
 const Nav = () => {
   const { userData } = useSelector((state) => state.user);
+  const [photoUrl, setPhotoUrl] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -42,16 +43,22 @@ const Nav = () => {
 
       {/* Right - User + Buttons */}
       <div className=" items-center gap-4 cursor-pointer lg:flex hidden">
-        {!userData ? (
+        {!userData? (
           <IoPersonCircle className="w-[40px] h-[40px] text-gray-600 " />
         ) : (
           <div
             className="w-[40px] h-[40px] rounded-full bg-gray-700 text-white flex items-center justify-center font "
             onClick={() => setShow((prev) => !prev)}
           >
-            {userData?.name?.slice(0, 1).toUpperCase()}
+          
+         { userData.photoUrl? <img
+                src={userData.photoUrl}
+                className="w-[40px] h-[40px] rounded-full"
+                alt="profile"
+              />  :<div>{userData?.name?.slice(0, 1).toUpperCase()}</div> }
           </div>
         )}
+
 
         {userData?.role === "educator" && (
           <button
@@ -112,8 +119,13 @@ const Nav = () => {
           <IoPersonCircle className="w-[60px] h-[60px] text-gray-400" />
         ) : (
           <div className="w-[60px] h-[60px] rounded-full bg-gray-700 text-white flex items-center justify-center text-xl font-bold">
-            {userData?.name?.slice(0, 1).toUpperCase()}
+             { userData.photoUrl? <img
+                src={userData.photoUrl}
+                className="w-[60px] h-[60px] rounded-full"
+                alt="profile"
+              />  :<div>{userData?.name?.slice(0, 1).toUpperCase()}</div> }
           </div>
+          
         )}
 
         <h2 className="text-lg font-semibold text-white">{userData?.name || "Ashish"}</h2>
@@ -156,6 +168,25 @@ const Nav = () => {
               <FaSignOutAlt /> Logout
             </button>
           )}
+           {/* test button  */}
+          <button
+              onClick={() => navigate("/dashboard")}
+              className=" h-10 w-full flex items-center justify-center px-4 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            >
+             Dev Test Dashboard 
+            </button>
+             <button
+              onClick={() => navigate("/courses")}
+              className=" h-10 w-full flex items-center justify-center px-4 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            >
+             Dev Test UI Courses 
+            </button>
+             <button
+              onClick={() => navigate("/createcourses")}
+              className=" h-10 w-full flex items-center justify-center px-4 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            >
+             Dev Test createCourse
+            </button>
         </div>
       </div>
       </div>
