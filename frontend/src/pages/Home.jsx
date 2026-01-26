@@ -5,9 +5,16 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 import { RiMicAiFill } from "react-icons/ri";
 import Logos from '../component/Logos';
 import ExploreCourses from '../component/ExploreCourses';
+import Categories from '../component/Categories';
+
+import WhyChooseUs from '../component/WhyChooseUs'
+
+import Footer from '../component/footer';
+import CardPage from '../component/CardPage';
+
 const Home = () => {
   return (
-    <div className='w=-[100%] overflow-hidden bg-transparent '>
+    <div className='w=-[100%] overflow-hidden  bg-[#ffffff]'>
      
      <div className='w-[100%] lg:h-[140vh] h-[70vh] relative'>
       <Nav/>
@@ -24,6 +31,16 @@ const Home = () => {
      </div>
       <Logos/>
       <ExploreCourses/>
+    
+      <Categories/>
+        <CardPage/>
+     
+
+
+      <WhyChooseUs/>
+     
+      <Footer/>
+
     </div>
   );
 }

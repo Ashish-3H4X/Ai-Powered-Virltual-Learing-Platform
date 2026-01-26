@@ -38,7 +38,7 @@ try {
    dispatch(setUserData(result.data))
    setLoading(false)
     toast.success("Login Succesfully")
-    navigate("/")
+    navigate("/home")
 
 } catch (error) {
    console.log(error.response.data);
@@ -68,7 +68,7 @@ try {
 
 
   return (
-      <div className="bg-[#dddbdb] w-[100vw] h-[100vh] flex items-center justify-center">
+      <div className="bg-[#f3ebeb] w-[100vw] h-[100vh] flex items-center justify-center">
           <form className='w-[90%] md:w-200 h-150 bg-[white] shadow-xl rounded-2xl flex '  onClick={(e)=>{e.preventDefault()}} >
                {/* left div */}
                     <div className='md:w-[50%] w-[100%] h-[100%] rounded-l-2xl bg-[black] md:flex items-center justify-center flex-col hidden'>

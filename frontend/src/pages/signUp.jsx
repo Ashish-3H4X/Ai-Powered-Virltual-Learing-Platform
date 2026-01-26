@@ -48,7 +48,7 @@ const SignUp = () => {
 
        const result  = await axios.post(serverUrl + "/api/auth/googleauthsignup" ,{name,email,role} ,{withCredentials:true})
        dispatch(setUserData(result.data))
-               navigate("/")
+               navigate("/home")
                toast.success("Signup Succesfully")
      } catch (error) {
       console.log(error)
@@ -56,7 +56,7 @@ const SignUp = () => {
      }
    }
   return (
-    <div  className="w-[100vw] h-[100vh] flex items-center justify-center bg-[#fff7f7]">
+    <div  className="w-[100vw] h-[100vh] flex items-center justify-center bg-[#f3ebeb]">
       <form className='w-[90%] md:w-200 h-150 bg-[white] shadow-xl rounded-2xl flex' onSubmit={(e)=>e.preventDefault()} >
            {/* left div */}
           

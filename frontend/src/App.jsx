@@ -12,21 +12,27 @@ import EditProfile from "./pages/EditProfile.jsx";
 import Dashboard from "./pages/Educator/Dashboard.jsx";
 import Courses from "./pages/Educator/Courses.jsx";
 import CreateCousres from "./pages/Educator/CreateCousres.jsx";
+import getCreatorCourse from "../src/customHooks/getCreatorCourse.js";
+import { setUserData } from "./redux/userSlice.js";
+import EditCourse from "./pages/Educator/EditCourse.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
+import AllCourses from "./pages/AllCourses.jsx";
 
 export const serverUrl = "http://localhost:8000";
-
 const App = () => {
+  getCreatorCourse();
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${serverUrl}/api/me`, {
+        const result = await axios.get(serverUrl + "/api/auth/getcurrentuser", {
           withCredentials: true,
         });
+
         // ✅ dispatch user data to Redux here
-        // dispatch(setUser(res.data));
+        dispatch(setUserData(result.data));
       } catch (err) {
         console.error("Error fetching user:", err);
       }
@@ -39,7 +45,8 @@ const App = () => {
     <>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
         <Route
           path="/signup"
           element={!userData ? <SignUp /> : <Navigate to="/" />}
@@ -55,42 +62,67 @@ const App = () => {
         />
         <Route
           path="/profileedit"
+          element={userData ? <AllCourses /> : <Navigate to={"/signup"} />}
+        />
+        <Route
+          path="/allcourses"
           element={userData ? <EditProfile /> : <Navigate to={"/signup"} />}
         />
-
-        {/* <Route
-          path="/dashboard"
-          element={userData?.role === "educator"?  <Dashboard /> : <Navigate to={"/signup"} />}
-        /> */}
-
-        {/* <Route
-          path="/courses"
-          element={userData?.role === "educator"?  <Courses /> : <Navigate to={"/signup"} />}
-        /> */}
-      <Route
-          path="/createcourses"
-          element={userData?.role === "educator"?  <CreateCousres /> : <Navigate to={"/signup"} />}
-        />
-
-         {/* Testing routes */}
-         
         <Route
           path="/dashboard"
-          element={ <Dashboard />}
+          element={
+            userData?.role === "educator" ? (
+              <Dashboard />
+            ) : (
+              <Navigate to={"/signup"} />
+            )
+          }
         />
-         <Route
-          path="/courses"
-          element={ <Courses />}
-        />
-      </Routes>
 
-      {/* <Route
+        <Route
+          path="/courses"
+          element={
+            userData?.role === "educator" ? (
+              <Courses />
+            ) : (
+              <Navigate to={"/signup"} />
+            )
+          }
+        />
+        <Route
+          path="/createcourses"
+          element={
+            userData?.role === "educator" ? (
+              <CreateCousres />
+            ) : (
+              <Navigate to={"/signup"} />
+            )
+          }
+        />
+        <Route
+          path="/editcourse/:courseId"
+          element={
+            userData?.role === "educator" ? (
+              <EditCourse />
+            ) : (
+              <Navigate to={"/signup"} />
+            )
+          }
+        />
+
+        {/* Testing routes */}
+
+        {/* <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/courses" element={<Courses />} />
+          <Route
+          path="/editcourse"
+          element={<EditCourse/>}
+        />
+        <Route
           path="/createcourses"
           element={ <CreateCousres />}
         /> */}
-    
-
-      
+      </Routes>
     </>
   );
 };

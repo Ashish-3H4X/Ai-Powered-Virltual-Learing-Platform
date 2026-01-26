@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaArrowCircleLeft } from "react-icons/fa";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import {BarChart,Bar,XAxis,YAxis,Tooltip,ResponsiveContainer,CartesianGrid,} from "recharts";
 import img from "../../assets/empty.jpg";
 const Dashboard = () => {
@@ -43,9 +43,9 @@ const studentEnrolledData = [
  const  totalEarnings = 10000;
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <FaArrowCircleLeft
-        className="absolute top-[8%] lg:left-[17%] left-[10%]   w-[22px] h-[22px] cursor-pointer"
-        onClick={() => navigate("/")}
+      <FaArrowLeftLong
+        className="absolute top-[3.6%] lg:left-[1.3%] left-[10%]  w-[22px] h-[22px] cursor-pointer"
+        onClick={() => navigate("/home")}
       />
 
       <div className="w-full px-6 py-10 bg-gray-50 space-y-10">

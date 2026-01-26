@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser"
 import authRouter from "./route/authRoute.js"
 import cors from "cors"
 import userRouter from "./route/userRoute.js"
+import courseRouter from "./route/courseRoute.js"
+
 dotenv.config()
 
 const PORT = process.env.PORT
@@ -24,9 +26,11 @@ app.use(cors({
 
 app.use("/api/auth" ,authRouter)
 app.use("/api/auth" ,userRouter)
+app.use("/api/course",courseRouter)
 
-app.get("/" ,(req, res)=>{
-  res.send("hello mahii")
+
+app.get("/api/me", (req, res) => {
+  res.json({ id: "123", name: "Mahi" })
 })
  connectDb()
 app.listen(PORT ,()=>{

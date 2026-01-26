@@ -36,9 +36,9 @@ const Nav = () => {
     <div className="w-full h-[70px] fixed top-0 flex items-center justify-between px-6 bg-[#000000b1] shadow-md z-[10]">
       {/* Left - Logo */}
       <div className="flex items-center gap-2">
-        <span className="text-[#d900ff] text-2xl">
-          VIRTUAL <span className="text-[#00ec8a] text-2xl">LEARNING </span>
-        </span>
+        <h1 className="  text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 bg-clip-text text-transparent">
+          VIRTUAL LEARNING 
+        </h1>
       </div>
 
       {/* Right - User + Buttons */}
@@ -183,6 +183,12 @@ const Nav = () => {
             </button>
              <button
               onClick={() => navigate("/createcourses")}
+              className=" h-10 w-full flex items-center justify-center px-4 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            >
+             Dev Test createCourse
+            </button>
+              <button
+              onClick={() => navigate("/editcourse")}
               className=" h-10 w-full flex items-center justify-center px-4 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
             >
              Dev Test createCourse
