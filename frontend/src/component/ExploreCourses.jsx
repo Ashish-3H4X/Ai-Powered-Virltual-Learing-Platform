@@ -8,8 +8,10 @@ import { AiFillOpenAI } from "react-icons/ai";
 import { GiMaterialsScience } from "react-icons/gi";
 import { BsCpu } from "react-icons/bs";
 import { BiLineChart } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 // import { FiPieChart } from "react-icons/fi";
 const ExploreCourses = () => {
+  const navigate = useNavigate()
   return (
     <div className="w-[100vw] min-h[50vh] flex flex-col lg:flex-row items-center justify-center gap-4 px-[30px]">
       {/* left/top */}
@@ -23,7 +25,7 @@ const ExploreCourses = () => {
           with lifetime access, personalized support, and a community that grows
           with you."
         </p>
-        <button className="px-[20px] py-[10px] border-2 bg-[black] border-white text-white rounded-[10px] tet-[18px] font-light flex gap-3 mt-[40px] cursor-pointer">
+        <button className="px-[20px] py-[10px] border-2 bg-[black] border-white text-white rounded-[10px] tet-[18px] font-light flex gap-3 mt-[40px] cursor-pointer" onClick={()=>navigate("/allcourses")}>
           {" "}
           Explore Courses   <TbPlayerPlayFilled className="mt-[5px]"/>
         </button>

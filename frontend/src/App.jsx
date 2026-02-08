@@ -17,6 +17,7 @@ import { setUserData } from "./redux/userSlice.js";
 import EditCourse from "./pages/Educator/EditCourse.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import AllCourses from "./pages/AllCourses.jsx";
+import CreateLecture from "./pages/Educator/CreateLecture.jsx";
 
 export const serverUrl = "http://localhost:8000";
 const App = () => {
@@ -62,12 +63,13 @@ const App = () => {
         />
         <Route
           path="/profileedit"
-          element={userData ? <AllCourses /> : <Navigate to={"/signup"} />}
+          element={userData ? <EditProfile /> : <Navigate to={"/signup"} />}
         />
         <Route
           path="/allcourses"
-          element={userData ? <EditProfile /> : <Navigate to={"/signup"} />}
+          element={userData ? <AllCourses /> : <Navigate to={"/signup"} />}
         />
+
         <Route
           path="/dashboard"
           element={
@@ -104,6 +106,16 @@ const App = () => {
           element={
             userData?.role === "educator" ? (
               <EditCourse />
+            ) : (
+              <Navigate to={"/signup"} />
+            )
+          }
+        />
+           <Route
+          path="/createlecture/:courseId"
+          element={
+            userData?.role === "educator" ? (
+              <CreateLecture />
             ) : (
               <Navigate to={"/signup"} />
             )
